@@ -5,10 +5,10 @@
     <meta charset="utf-8"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title th:text="'InstaTeam | ' + ${page_title}">InstaTeam</title>
-    <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/site.css"/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata:400,700'  type='text/css'/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="@{css/normalize.css}"/>
+    <link rel="stylesheet" href="@{css/site.css}"/>
 </head>
 
 <body>
@@ -16,15 +16,15 @@
         <div class="container">
             <div class="site-header">
                 <a class="logo" th:href="@{/}">InstaTeam</a>
-                <a class="new-project button icon-left" th:href="@{/project/add}"><i class="material-icons">add</i> New Project</a>
+                <a class="new-project button icon-left" th:href="@{/project/add}"><i class="material-icons">add</i>New Project</a>
             </div>
         </div>
     </header>
     <nav th:fragment="nav" class="nav">
         <ul>
             <li class="selected"><a th:href="@{/}">Projects</a></li>
-            <li><a href="#">Collaborators</a></li>
-            <li><a href="#">Roles</a></li>
+            <li><a th:href="@{/collaborator/index}">Collaborators</a></li>
+            <li><a th:href="@{/role/index}">Roles</a></li>
         </ul>
     </nav>
 </body>

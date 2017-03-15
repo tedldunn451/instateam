@@ -35,7 +35,7 @@ public class ProjectController {
 
     // Project detail page
     @RequestMapping("/project/{projectId}")
-    public String project(@PathVariable Long projectId, Model model) {
+    public String projectDetail(@PathVariable Long projectId, Model model) {
 
         Project project = projectService.findById(projectId);
 
@@ -51,11 +51,27 @@ public class ProjectController {
             model.addAttribute("project", new Project());
         }
 
-        model.addAttribute("action", "/");
+        model.addAttribute("action", "/project");
         model.addAttribute("heading", "New Project");
         model.addAttribute("submit", "Add");
 
-        return "project/form";
+        return "project/add_edit";
+    }
+
+    // Add a new project
+    @RequestMapping(value = "/project", method = RequestMethod.POST)
+    public String addProject(@Valid Project project, BindingResult result, RedirectAttributes attributes) {
+
+        if(result.hasErrors()) {
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
+            attributes.addFlashAttribute("project", project);
+
+            return "redirect:/project/add";
+        }
+
+        projectService.save(project);
+
+        return "redirect:/";
     }
 
     // Form for editing an existing project
@@ -66,15 +82,15 @@ public class ProjectController {
             model.addAttribute("project", projectService.findById(projectId));
         }
 
-        model.addAttribute("action", String.format("/project/%s", projectId));
+        model.addAttribute("action", String.format("/project/%s/edit", projectId));
         model.addAttribute("heading", "Edit Project");
         model.addAttribute("submit", "Update");
 
-        return "project/form";
+        return "project/add_edit";
     }
 
     // Edit an existing project
-    @RequestMapping(value = "/project/{projectId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/project/{projectId}/edit", method = RequestMethod.POST)
     public String editProject(@Valid Project project, BindingResult result, RedirectAttributes attributes) {
 
         if(result.hasErrors()) {
@@ -89,19 +105,11 @@ public class ProjectController {
         return "redirect:/";
     }
 
-    // Add a new project
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String addProject(@Valid Project project, BindingResult result, RedirectAttributes attributes) {
+    // Add new or edit existing collaborators
+    @RequestMapping("collaborator/manage")
+    public String manageCollaborators(Model model) {
 
-        if(result.hasErrors()) {
-            attributes.addFlashAttribute("org.springframework.validation.BindingResult.project", project);
-            attributes.addFlashAttribute("project", project);
 
-            return "redirect:/project/add";
-        }
-
-        projectService.save(project);
-
-        return "redirect:/";
+        return "collaborator/add_edit";
     }
 }

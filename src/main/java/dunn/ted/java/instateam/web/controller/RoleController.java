@@ -29,17 +29,16 @@ public class RoleController {
 
         List<Role> roles = roleService.findAll();
 
-        model.addAttribute("role", new Role());
+        model.addAttribute("newRole", new Role());
         model.addAttribute("roles", roles);
-        model.addAttribute("action", "/role/add");
+        model.addAttribute("action", "/roles");
         model.addAttribute("heading", "Roles");
-        model.addAttribute("submit", "Add");
 
         return "/role/add";
     }
 
     // Add a new project
-    @RequestMapping(value = "/role/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/roles", method = RequestMethod.POST)
     public String addRole(@Valid Role role, BindingResult result, RedirectAttributes attributes) {
 
         if(result.hasErrors()) {

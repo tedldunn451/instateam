@@ -1,7 +1,10 @@
 package dunn.ted.java.instateam.web.controller;
 
+import dunn.ted.java.instateam.model.Collaborator;
 import dunn.ted.java.instateam.model.Project;
+import dunn.ted.java.instateam.service.CollaboratorService;
 import dunn.ted.java.instateam.service.ProjectService;
+import dunn.ted.java.instateam.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,12 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private CollaboratorService collaboratorService;
+
+    @Autowired
+    private RoleService roleService;
+
     // Index of projects
     @RequestMapping("/")
     public String projectIndex(Model model) {
@@ -38,8 +47,11 @@ public class ProjectController {
     public String projectDetail(@PathVariable Long projectId, Model model) {
 
         Project project = projectService.findById(projectId);
+        List<Collaborator> collaborators = project.getCollaborators();
 
         model.addAttribute("project", project);
+        model.addAttribute("collaborators", collaborators);
+
         return "project/details";
     }
 
@@ -105,11 +117,4 @@ public class ProjectController {
         return "redirect:/";
     }
 
-    // Add new or edit existing collaborators
-    @RequestMapping("collaborator/manage")
-    public String manageCollaborators(Model model) {
-
-
-        return "collaborator/add_edit";
-    }
 }

@@ -31,22 +31,10 @@
                 </div>
                 <div>
                     <label>Project Roles:</label>
-                    <ul class="checkbox-list">
+                    <ul class="checkbox-list" th:each="role : ${project.rolesNeeded}">
                         <li>
-                            <input type="checkbox" name="project_roles" value="Developer"/>
-                            <span class="primary"> Developer</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="project_roles" value="Designer"/>
-                            <span class="primary"> Designer</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="project_roles" value="QA"/>
-                            <span class="primary"> QA</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="project_roles" value="DevOps"/>
-                            <span class="primary"> DevOps</span>
+                            <input type="checkbox" th:field="*{rolesNeeded}" value="${role}"/>
+                            <span class="primary" th:text="${role}"> Developer</span>
                         </li>
                     </ul>
                 </div>

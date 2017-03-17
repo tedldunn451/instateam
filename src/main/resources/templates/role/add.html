@@ -8,14 +8,14 @@
     <nav class="nav">
         <ul>
             <li><a th:href="@{/}">Projects</a></li>
-            <li><a th:href="@{/collaborators}">Collaborators</a></li>
-            <li class="selected"><a th:href="@{/roles}">Roles</a></li>
+            <li><a th:href="@{/collaborator}">Collaborators</a></li>
+            <li class="selected"><a th:href="@{/role}">Roles</a></li>
         </ul>
     </nav>
 
     <section>
         <div class="container wrapper">
-            <form th:action="@{/roles}" method="post" th:object="${newRole}">
+            <form th:action="@{/role}" method="post" th:object="${newRole}">
                 <input type="hidden" th:field="*{id}" />
                 <h2>Manage Roles</h2>
                 <div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="actions add-new-role">
                     <input type="text" th:field="*{name}" placeholder="New Role..."/>
-                    <button type="submit" class="button">Add</button>
+                    <input type="submit" th:value="${submit}" class="button"/>
                 </div>
             </form>
         </div>

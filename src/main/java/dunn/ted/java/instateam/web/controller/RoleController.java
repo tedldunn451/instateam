@@ -23,34 +23,34 @@ public class RoleController {
     private RoleService roleService;
 
     // Form listing current roles and ability to add new role
-    @RequestMapping("/roles")
-    public String addRole(Model model) {
+    @RequestMapping("/role")
+    public String listRole(Model model) {
 
 
         List<Role> roles = roleService.findAll();
 
         model.addAttribute("newRole", new Role());
         model.addAttribute("roles", roles);
-        model.addAttribute("action", "/roles");
         model.addAttribute("heading", "Roles");
+        model.addAttribute("submit", "Add");
 
         return "/role/add";
     }
 
     // Add a new project
-    @RequestMapping(value = "/roles", method = RequestMethod.POST)
+    @RequestMapping(value = "/role", method = RequestMethod.POST)
     public String addRole(@Valid Role role, BindingResult result, RedirectAttributes attributes) {
 
         if(result.hasErrors()) {
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
             attributes.addFlashAttribute("project", role);
 
-            return "redirect:/roles";
+            return "redirect:/role";
         }
 
         roleService.save(role);
 
-        return "redirect:/roles";
+        return "redirect:/role";
     }
 
 }

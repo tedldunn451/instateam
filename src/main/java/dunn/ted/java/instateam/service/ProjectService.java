@@ -12,4 +12,5 @@ public interface ProjectService {
     List<Project> findAll();
     Project findById(int id);
     void save(Project project);
+    void delete(Project project);
 }

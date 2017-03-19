@@ -34,15 +34,6 @@ public class Project {
 
     public Project() {}
 
-    public Project(Long id, String name, String description, String status, List<Role> rolesNeeded, List<Collaborator> collaborators) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.rolesNeeded = rolesNeeded;
-        this.collaborators = collaborators;
-    }
-
     public Long getId() {
         return id;
     }

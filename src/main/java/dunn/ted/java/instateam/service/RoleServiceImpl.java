@@ -22,7 +22,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role findById(Long id) {
+    public Role findById(int id) {
         return roleDao.findById(id);
     }
 

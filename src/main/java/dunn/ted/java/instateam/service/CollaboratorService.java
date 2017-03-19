@@ -10,6 +10,6 @@ import java.util.List;
 public interface CollaboratorService {
 
     List<Collaborator> findAll();
-    Collaborator findById(Long id);
+    Collaborator findById(int id);
     void save(Collaborator collaborator);
 }

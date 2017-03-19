@@ -22,7 +22,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     }
 
     @Override
-    public Collaborator findById(Long id) {
+    public Collaborator findById(int id) {
         return collaboratorDao.findById(id);
     }
 

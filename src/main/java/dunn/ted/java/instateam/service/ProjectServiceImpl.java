@@ -22,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project findById(Long id) {
+    public Project findById(int id) {
         return projectDao.findById(id);
     }
 

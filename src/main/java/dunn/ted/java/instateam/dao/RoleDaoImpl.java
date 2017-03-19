@@ -35,7 +35,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Role findById(Long id) {
+    public Role findById(int id) {
 
         Session session = sessionFactory.openSession();
 

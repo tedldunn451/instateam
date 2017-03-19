@@ -36,7 +36,7 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public Project findById(Long id) {
+    public Project findById(int id) {
 
         Session session = sessionFactory.openSession();
 

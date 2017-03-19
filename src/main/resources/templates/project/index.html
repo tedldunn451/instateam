@@ -12,7 +12,7 @@
                 <div class="project">
                     <h2><a th:href="@{|/project/${project.id}|}" th:text="${project.name}">Website Project</a></h2>
                     <p th:text="${project.description}">Design and build a custom website</p>
-                    <span th:text="${project.status}" class="tag active">Active</span>
+                    <span th:text="${project.status}" class="tag" th:classappend="${#strings.toLowerCase(project.status)}" > 'archived' : 'active'}}">Active</span>
                 </div>
             </div>
         </div>

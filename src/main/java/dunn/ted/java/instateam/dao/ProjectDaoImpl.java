@@ -60,4 +60,16 @@ public class ProjectDaoImpl implements ProjectDao {
 
         session.close();
     }
+
+    @Override
+    public void delete(Project project) {
+
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+        session.delete(project);
+        session.getTransaction().commit();
+
+        session.close();
+    }
 }

@@ -57,4 +57,16 @@ public class CollaboratorDaoImpl implements CollaboratorDao {
 
         session.close();
     }
+
+    @Override
+    public void delete(Collaborator collaborator) {
+
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+        session.delete(collaborator);
+        session.getTransaction().commit();
+
+        session.close();
+    }
 }

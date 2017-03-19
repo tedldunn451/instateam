@@ -22,11 +22,12 @@
     </header>
     <nav th:fragment="nav" class="nav">
         <ul>
-            <li class="selected"><a th:href="@{/}">Projects</a></li>
-            <li><a th:href="@{/collaborator}">Collaborators</a></li>
-            <li><a th:href="@{/role}">Roles</a></li>
+            <li th:classappend="${#httpServletRequest.servletPath.equals('/') ? 'selected' : ''}"><a th:href="@{/}">Projects</a></li>
+            <li th:classappend="${#httpServletRequest.servletPath.equals('/collaborator') ? 'selected' : ''}"><a th:href="@{/collaborator}">Collaborators</a></li>
+            <li th:classappend="${#httpServletRequest.servletPath.equals('/role') ? 'selected' : ''}"><a th:href="@{/role}">Roles</a></li>
         </ul>
     </nav>
 </body>
 
 </html>
+

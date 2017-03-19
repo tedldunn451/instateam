@@ -38,15 +38,9 @@ public class CollaboratorController {
     @RequestMapping("/collaborator")
     public String listCollaborator(Model model) {
 
-        List<Collaborator> collaborators = collaboratorService.findAll();
-        List<Role> roles = roleService.findAll();
-
-        if(!model.containsAttribute("collaborator")) {
-            model.addAttribute("collaborator", new Collaborator());
-        }
-
-        model.addAttribute("collaborators", collaborators);
-        model.addAttribute("roles", roles);
+        model.addAttribute("newCollaborator", new Collaborator());
+        model.addAttribute("collaborators", collaboratorService.findAll());
+        model.addAttribute("roles", roleService.findAll());
         model.addAttribute("action", "/collaborator");
         model.addAttribute("heading", "Collaborators");
         model.addAttribute("submit", "Add");
@@ -74,13 +68,12 @@ public class CollaboratorController {
     public String editCollaborators(@PathVariable Long projectId, Model model) {
 
         Project project = projectService.findById(projectId);
-        List<Collaborator> collaborators = collaboratorService.findAll();
-        List<Role> roles = project.getRolesNeeded();
+        List<Collaborator> collaborators = project.getCollaborators();
 
         model.addAttribute("project", project);
         model.addAttribute("collaborators", collaborators);
-        model.addAttribute("roles", roles);
-        model.addAttribute("action", "/collaborator/{projectId}/edit");
+        model.addAttribute("roles", project.getRolesNeeded());
+        model.addAttribute("action", String.format("/collaborator/{projectId}/edit", projectId));
 
         return "/collaborator/edit";
     }

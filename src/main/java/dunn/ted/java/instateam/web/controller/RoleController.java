@@ -26,11 +26,8 @@ public class RoleController {
     @RequestMapping("/role")
     public String listRole(Model model) {
 
-
-        List<Role> roles = roleService.findAll();
-
         model.addAttribute("newRole", new Role());
-        model.addAttribute("roles", roles);
+        model.addAttribute("roles", roleService.findAll());
         model.addAttribute("heading", "Roles");
         model.addAttribute("submit", "Add");
 

@@ -2,6 +2,7 @@ package dunn.ted.java.instateam.web.controller;
 
 import dunn.ted.java.instateam.model.Collaborator;
 import dunn.ted.java.instateam.model.Project;
+import dunn.ted.java.instateam.model.Role;
 import dunn.ted.java.instateam.service.CollaboratorService;
 import dunn.ted.java.instateam.service.ProjectService;
 import dunn.ted.java.instateam.service.RoleService;
@@ -25,10 +26,8 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-
     @Autowired
     private CollaboratorService collaboratorService;
-
     @Autowired
     private RoleService roleService;
 
@@ -48,9 +47,11 @@ public class ProjectController {
 
         Project project = projectService.findById(projectId);
         List<Collaborator> collaborators = project.getCollaborators();
+        List<Role> roles = roleService.findAll();
 
         model.addAttribute("project", project);
         model.addAttribute("collaborators", collaborators);
+        model.addAttribute("roles", roles);
 
         return "project/details";
     }
@@ -66,6 +67,7 @@ public class ProjectController {
         model.addAttribute("action", "/project");
         model.addAttribute("heading", "New Project");
         model.addAttribute("submit", "Add");
+        model.addAttribute("roles",roleService.findAll());
 
         return "project/add_edit";
     }

@@ -6,19 +6,20 @@
 <body>
     <header th:replace="layout :: header"></header>
     <nav th:replace="layout :: nav"></nav>
+
     <section>
         <div class="container wrapper">
-            <form th:action="@{/role}" method="post" th:object="${newRole}">
+            <form th:action="@{/role/add}" method="post" th:object="${newRole}">
                 <h2>Manage Roles</h2>
                 <div>
-                    <ul class="checkbox-list" th:each="role : ${roles}">
-                        <li><span th:text="${role.name}" class="primary">Developer</span></li>
+                    <ul class="checkbox-list">
+                        <li th:each="role : ${roles}"><span th:text="${role.name}" class="primary">Developer</span></li>
                     </ul>
                 </div>
                 <div class="actions add-new-role">
-                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{id}"/>
                     <input type="text" th:field="*{name}" placeholder="New Role..."/>
-                    <input type="submit" th:value="${submit}" class="button"/>
+                    <input type="submit" value="Add" class="button"/>
                 </div>
             </form>
         </div>

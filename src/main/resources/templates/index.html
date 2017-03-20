@@ -6,17 +6,19 @@
 <body>
     <header th:replace="layout :: header"></header>
     <nav th:replace="layout :: nav"></nav>
+
     <section>
         <div class="container wrapper">
-            <div th:each="project : ${projects}" class="project-list">
-                <div class="project">
-                    <h2><a th:href="@{|/project/${project.id}|}" th:text="${project.name}">Website Project</a></h2>
+            <div class="project-list">
+                <div th:each="project : ${projects}" class="project">
+                    <h2><a th:href="@{|${project.id}/detail|}" th:text="${project.name}">Website Project</a></h2>
                     <p th:text="${project.description}">Design and build a custom website</p>
                     <span th:text="${project.status}" class="tag" th:classappend="${#strings.toLowerCase(project.status)}" > 'archived' : 'active'}}">Active</span>
                 </div>
             </div>
         </div>
     </section>
+
 </body>
 
 </html>
